@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise for Jisan ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Dancing Script, Plus Jakarta Sans & Hind Siliguri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Hind+Siliguri:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: '#FFF0F3',
+                        cream: '#FFF9FA',
+                        rosegold: '#E07A8C',
+                        burgundy: '#591C2C',
+                        softpink: '#FFD6E0',
+                        deeppink: '#C9184A',
+                        goldaccent: '#D4A373'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        script: ['"Dancing Script"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', '"Hind Siliguri"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Romantic Animations & 3D Card Flips */
+        body {
+            background: linear-gradient(135deg, #FFF9FA 0%, #FFE5EC 50%, #FFD6E0 100%);
+            color: #591C2C;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Hearts Background */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-heart {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.4;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 32px rgba(201, 24, 74, 0.08);
+        }
+
+        /* Envelope Styling & Animation */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope-flap {
+            transform-origin: top;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.3s;
+        }
+
+        .envelope-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .wax-seal {
+            transition: all 0.5s ease;
+            box-shadow: 0 4px 12px rgba(164, 19, 60, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .envelope-open .wax-seal {
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+
+        .letter-paper {
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(20px);
+        }
+
+        .envelope-open .letter-paper {
+            max-height: 2800px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 1.5rem;
+        }
+
+        /* 3D Flip Cards */
+        .flip-card {
+            perspective: 1000px;
+            height: 245px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #FF758F 0%, #C9184A 100%);
+            color: white;
+        }
+
+        /* Pulse Heart Animation */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.12); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.18); }
+        }
+
+        .heart-beat {
+            animation: heartbeat 1.6s infinite ease-in-out;
+        }
+
+        @keyframes softFadeScale {
+            0% { opacity: 0; transform: scale(0.95) translateY(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .animate-note-pop {
+            animation: softFadeScale 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Burst Particle */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            font-size: 1.4rem;
+            animation: burstOut 1s ease-out forwards;
+        }
+
+        @keyframes burstOut {
+            0% {
+                transform: translate(0, 0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(var(--rot));
+                opacity: 0;
+            }
+        }
+
+        /* Fade in sections */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s ease-out;
+        }
+
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rosegold selection:text-white">
+
+    <!-- Floating Ambient Hearts Container -->
+    <div id="floating-bg" class="floating-bg"></div>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-xl mx-auto px-5 pb-20">
+
+        <!-- 1. HERO / WELCOME SCREEN -->
+        <section id="hero-section" class="min-h-screen flex flex-col items-center justify-center text-center py-12">
+            <div class="glass-card rounded-3xl p-8 sm:p-10 w-full relative overflow-hidden">
+                <!-- Decorative Top Sparkle -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-softpink/70 text-deeppink text-xs font-semibold tracking-wider uppercase mb-6">
+                    <span>✨ Shudhu Tomar Jonno, Amar Jaan ✨</span>
+                </div>
+
+                <!-- Animated Heart Icon -->
+                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-tr from-deeppink to-rosegold flex items-center justify-center shadow-lg shadow-deeppink/30 heart-beat">
+                    <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold text-burgundy leading-tight mb-4">
+                    Shudhu Tomar Jonno, <span class="font-sans text-2xl sm:text-3xl text-deeppink block mt-2">Amar Jaan Jisan ❤️</span>
+                </h1>
+
+                <p class="font-sans text-burgundy/85 text-base sm:text-lg leading-relaxed mb-8">
+                    Amar life-e ashar jonno, ar amake tomar life-er shobcheye boro priority dewar jonno... kono special din charai chotto ekta surprise tomar jonno 🥺✨
+                </p>
+
+                <button id="open-surprise-btn" onclick="openSurprise(event)" class="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-deeppink to-rosegold text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-deeppink/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+                    <span>Amar Moner Kothagulo Poro</span>
+                    <span class="text-lg group-hover:translate-x-1 transition-transform">💌</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- HIDDEN SURPRISE CONTENT (Revealed after button click) -->
+        <div id="surprise-content" class="hidden space-y-16 pt-6">
+
+            <!-- 2. INTERACTIVE ENVELOPE / LOVE LETTER -->
+            <section class="reveal-section">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-deeppink">For Your Eyes Only</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-burgundy mt-1">Chithi-ta Khulo, Jaan ✉️</h2>
+                    <p class="text-sm text-burgundy/70 mt-1">Nicher wax seal-tate tap kore amar moner kotha poro</p>
+                </div>
+
+                <div id="envelope-container" class="envelope-wrapper">
+                    <!-- Closed Envelope Visual -->
+                    <div onclick="toggleEnvelope()" class="relative bg-gradient-to-b from-[#FFE5EC] to-[#FFC2D1] rounded-2xl p-6 sm:p-8 shadow-xl border border-white/80 cursor-pointer overflow-hidden transition-transform hover:scale-[1.01]">
+                        <!-- Top Flap Illusion -->
+                        <div class="envelope-flap absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#FFB3C6] to-[#FF8FAB] opacity-60 rounded-b-[50%] z-10 pointer-events-none"></div>
+
+                        <div class="relative z-20 flex flex-col items-center justify-center py-6">
+                            <p class="font-script text-2xl text-burgundy mb-1">To: My Dearest Jisan</p>
+                            <p class="font-sans text-xs text-burgundy/80 mb-3">Amar Janemaan, Amar Pakhi, Amar Baccha</p>
+                            
+                            <!-- Wax Seal Button -->
+                            <div class="wax-seal w-16 h-16 rounded-full bg-gradient-to-br from-[#A4133C] to-[#590D22] flex items-center justify-center text-white border-2 border-[#FFCCD5]/40">
+                                <span class="font-serif text-xl font-bold">J❤️</span>
+                            </div>
+                            <span id="tap-hint" class="text-xs font-medium text-burgundy/75 mt-3 animate-pulse">Khulte ekhane tap koro</span>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Letter Paper -->
+                    <div class="letter-paper glass-card rounded-2xl p-6 sm:p-8 border-2 border-softpink relative">
+                        <div class="flex items-center justify-between border-b border-rosegold/20 pb-3 mb-5">
+                            <span class="font-sans font-semibold text-lg sm:text-xl text-deeppink">Amar Priyo Jisan,</span>
+                            <span class="text-xs text-burgundy/70 bg-blush px-3 py-1 rounded-full">Hridoyer Gobhir Theke 💕</span>
+                        </div>
+
+                        <!-- Customizable Message Display -->
+                        <div id="letter-text-display" class="font-sans text-burgundy/95 text-sm sm:text-base leading-relaxed space-y-4 whitespace-pre-line"></div>
+
+                        <div class="mt-8 pt-4 border-t border-rosegold/20 flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <p class="font-sans text-sm font-semibold text-deeppink">Chirokal shudhu tomari ❤️🥺</p>
+                            </div>
+                            <button onclick="openEditModal()" class="text-xs font-medium text-burgundy/75 hover:text-deeppink bg-white/85 hover:bg-white px-4 py-2 rounded-full border border-rosegold/30 shadow-sm transition-all flex items-center gap-1.5 cursor-pointer">
+                                <span>✏️ Edit Message</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. INTERACTIVE FLIP CARDS: "Keno Tumi Amar Shob Kichu" -->
+            <section class="reveal-section">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-deeppink">What You Mean To Me</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-burgundy mt-1">Keno Tumi Amar Shob Kichu ✨</h2>
+                    <p class="text-sm text-burgundy/70 mt-1">Protita card-e tap kore bhetorer kothagulo dekho</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Card 1 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass-card">
+                                <span class="text-3xl mb-3">💖</span>
+                                <h3 class="font-sans text-lg font-bold text-burgundy">Amar Heart & Mentor</h3>
+                                <span class="text-xs text-deeppink mt-3 font-medium">Tap koro ↻</span>
+                            </div>
+                            <div class="flip-card-back shadow-lg">
+                                <p class="font-sans text-sm leading-relaxed">
+                                    Ami jani na tumi amake ki bhabo, kintu amar life-er heart, amar mentor, amar shob kichu tumi-i. Protita step-e tomar guide ar support amake sahosh dey.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass-card">
+                                <span class="text-3xl mb-3">👑</span>
+                                <h3 class="font-sans text-lg font-bold text-burgundy">Amar Shobcheye Boro Priority</h3>
+                                <span class="text-xs text-deeppink mt-3 font-medium">Tap koro ↻</span>
+                            </div>
+                            <div class="flip-card-back shadow-lg">
+                                <p class="font-sans text-sm leading-relaxed">
+                                    Shokal 10ta theke raat 8ta porjonto office, porashona ar eto bestotar majheo tumi jebhabe amake shobar age rakho, shomoy ber koro—eta amar life-er shobcheye boro pawa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass-card">
+                                <span class="text-3xl mb-3">🕊️</span>
+                                <h3 class="font-sans text-lg font-bold text-burgundy">Amar Janemaan, Pakhi, Baccha</h3>
+                                <span class="text-xs text-deeppink mt-3 font-medium">Tap koro ↻</span>
+                            </div>
+                            <div class="flip-card-back shadow-lg">
+                                <p class="font-sans text-sm leading-relaxed">
+                                    Tumi baire jotoi strong thako na keno, amar kache tumi amar chotto baccha, amar adorer jaan pakhi—jake ami sharajibon agle rakhte ar onk jotno korte chai.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass-card">
+                                <span class="text-3xl mb-3">💍</span>
+                                <h3 class="font-sans text-lg font-bold text-burgundy">Amar Sharajiboner Shongi</h3>
+                                <span class="text-xs text-deeppink mt-3 font-medium">Tap koro ↻</span>
+                            </div>
+                            <div class="flip-card-back shadow-lg">
+                                <p class="font-sans text-sm leading-relaxed">
+                                    I wish Insha Allah amader biyer pore onk boyosh hoya porjonto, chul paka boyosheo ami shudhu tomar haat-ta dhore thik eibhabei bhalobeshe thakte chai.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. FUTURE PROMISES & DUA SECTION -->
+            <section class="reveal-section">
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-softpink/90 relative overflow-hidden">
+                    <div class="text-center mb-6">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-deeppink">Forever & Beyond</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-burgundy mt-1">Amader Future & Promises 🤲❤️</h2>
+                        <p class="text-sm text-burgundy/75 mt-1">Tomar sathe katano purata life niye amar chotto kichu shopno ar promise</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3.5 bg-white/75 p-4 rounded-2xl border border-softpink/60">
+                            <span class="text-xl mt-0.5">🤍</span>
+                            <div>
+                                <h4 class="font-sans font-semibold text-burgundy text-sm sm:text-base">Buro Boyosh Porjonto Ekshathe Thaka</h4>
+                                <p class="font-sans text-xs sm:text-sm text-burgundy/80 mt-0.5 leading-relaxed">
+                                    I wish Insha Allah amader biyer pore chul peke jawa, ekdom onk boyosh hoya porjonto amra thik eibhabei eke oporer haat dhore bhalobeshe thakbo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 bg-white/75 p-4 rounded-2xl border border-softpink/60">
+                            <span class="text-xl mt-0.5">🌿</span>
+                            <div>
+                                <h4 class="font-sans font-semibold text-burgundy text-sm sm:text-base">Tomar Shob Klantir Bhag Newa</h4>
+                                <p class="font-sans text-xs sm:text-sm text-burgundy/80 mt-0.5 leading-relaxed">
+                                    Tumi jebhabe shokal theke raat porjonto office ar porashonar chap samlao—ami promise korchi, kokhonoi tomake eka feel korte dibo na. Tomar shob stress ar klanti ami share korbo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 bg-white/75 p-4 rounded-2xl border border-softpink/60">
+                            <span class="text-xl mt-0.5">✨</span>
+                            <div>
+                                <h4 class="font-sans font-semibold text-burgundy text-sm sm:text-base">Amader Dream Home & Family</h4>
+                                <p class="font-sans text-xs sm:text-sm text-burgundy/80 mt-0.5 leading-relaxed">
+                                    Amader nijeder shundor ekta ghor ar dui poribarer shob shopno puroner pothe ami shobshomoy chayar moto tomar pashe thakbo, amar jaan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. INTERACTIVE "CARE & LOVE REMINDER" / HUG BUTTON -->
+            <section class="reveal-section">
+                <div class="glass-card rounded-3xl p-6 sm:p-8 text-center border-2 border-softpink/80">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-deeppink">Virtual Hug & Care</span>
+                    <h2 class="font-serif text-2xl font-bold text-burgundy mt-1 mb-2">Sharadin Onk Kaj Koro To Jaan... 🥺</h2>
+                    <p class="text-sm text-burgundy/80 mb-5 leading-relaxed">
+                        Office-e kaj korte korte ba porashonar chape jokhoni khub tired lagbe, nicher button-tate click koro:
+                    </p>
+
+                    <button onclick="showComfortNote(event)" class="w-full sm:w-auto bg-gradient-to-r from-[#A4133C] to-deeppink text-white font-sans font-semibold px-6 py-4 rounded-2xl shadow-lg shadow-deeppink/25 hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all cursor-pointer">
+                        Jodi Khub Tired Lage, Ekhane Click Koro Jaan 🥺🫂
+                    </button>
+
+                    <!-- Comfort Note Display Card -->
+                    <div id="comfort-note-box" class="hidden mt-5 bg-white/90 border border-rosegold/40 rounded-2xl p-5 text-left shadow-inner">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-deeppink">💌 For You, Jaan Pakhi</span>
+                            <span id="comfort-counter" class="text-[11px] text-burgundy/60">1/5</span>
+                        </div>
+                        <p id="comfort-note-text" class="font-sans text-sm sm:text-base text-burgundy leading-relaxed font-medium"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. INTERACTIVE "HOW MUCH DO I LOVE YOU?" METER -->
+            <section class="reveal-section">
+                <div class="glass-card rounded-3xl p-6 sm:p-8 text-center">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-deeppink">Love Calculator</span>
+                    <h2 class="font-serif text-2xl font-bold text-burgundy mt-1 mb-2">Amar Bhalobasha Tomar Jonno 💖</h2>
+                    <p class="text-sm text-burgundy/75 mb-6">Button-ta tap kore dekho tomake kotota bhalobashi jaan pakhi! 👇</p>
+
+                    <!-- Progress Bar Container -->
+                    <div class="w-full bg-softpink/60 rounded-full h-6 p-1 mb-4 overflow-hidden shadow-inner">
+                        <div id="love-progress-bar" class="bg-gradient-to-r from-rosegold to-deeppink h-full rounded-full transition-all duration-300 flex items-center justify-end pr-2" style="width: 15%;">
+                            <span class="text-[10px] text-white font-bold">❤️</span>
+                        </div>
+                    </div>
+
+                    <!-- Percentage & Sweet Pop-up Note -->
+                    <div class="min-h-[68px] flex flex-col items-center justify-center mb-5">
+                        <p id="love-percentage" class="font-serif text-2xl sm:text-3xl font-bold text-deeppink">15%</p>
+                        <p id="love-note" class="text-sm text-burgundy/85 font-medium mt-1 transition-all">Tap koro jaan, aro onk baki ache! 😉</p>
+                    </div>
+
+                    <button id="love-tap-btn" onclick="increaseLove(event)" class="bg-gradient-to-r from-deeppink to-rosegold text-white font-semibold px-7 py-3.5 rounded-full shadow-md shadow-deeppink/25 hover:shadow-lg active:scale-90 transition-all cursor-pointer select-none">
+                        Tap Kore Dekho Kotota Bhalobashi 💖
+                    </button>
+                </div>
+            </section>
+
+            <!-- 7. CLOSING NOTE -->
+            <footer class="reveal-section text-center pt-2 pb-10">
+                <div class="inline-block glass-card rounded-3xl px-7 py-8 w-full border border-softpink">
+                    <p class="font-sans text-burgundy/90 text-sm sm:text-base leading-relaxed mb-3">
+                        Tumi please jaan nijer jotno niba, thikmoto khawa-dawa korba ar nijer opor eto pressure nio na. Ami tomake onk beshi bhalobashi Jaan pakhi 🥺❤️
+                    </p>
+                    <p class="font-script text-4xl text-deeppink font-bold mt-3">
+                        Forever & Always Yours ❤️
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- EDIT MESSAGE MODAL (No alert/confirm used) -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-burgundy/40 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-softpink animate-fadeIn">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-serif text-xl font-bold text-burgundy">Chithir Lekha Edit Koro 💌</h3>
+                <button onclick="closeEditModal()" class="text-burgundy/60 hover:text-deeppink text-xl font-bold px-2 cursor-pointer">&times;</button>
+            </div>
+            <p class="text-xs text-burgundy/70 mb-3">Nicher box-e tomar moner kotha nijer moto likhe save koro:</p>
+            <textarea id="custom-message-input" rows="8" class="w-full rounded-2xl border border-rosegold/40 p-3.5 text-sm text-burgundy focus:outline-none focus:ring-2 focus:ring-deeppink bg-cream leading-relaxed"></textarea>
+            <div class="flex items-center justify-end gap-2 mt-4">
+                <button onclick="resetDefaultMessage()" class="text-xs text-burgundy/60 hover:text-burgundy px-3 py-2 rounded-full cursor-pointer">Reset Default</button>
+                <button onclick="saveCustomMessage()" class="bg-gradient-to-r from-deeppink to-rosegold text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-md hover:opacity-95 cursor-pointer">Save Letter ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Deeply emotional, heartfelt Banglish letter tailored for Jisan
+        const DEFAULT_MESSAGE = `Kono special din ba occasion charai, ekdom huddai ei chotto surprise-ta tomar jonno banalam jaan.
+
+Ami jani na tumi amake ki bhabo, kintu amar life-er heart, amar mentor, amar shob kichu tumi-i—amar janemaan, amar pakhi, amar baccha. Tumi amar life-e ashar por theke amar purata prithibitai bodle geche. Protita din, protita muhurto tomar karone onk beshi shundor ar meaningful hoye uthse.
+
+Ami dekhi tumi shokal 10ta theke raat 8ta porjonto kotota koshto koro—office-e boshe ghontar por ghonta kaj kora, porashonar chap samlano, amader ar amader poribarer shundor ekta future-er jonno nijer kandhe eto dayitto tule newa... shobta dekhe amar bukta bhore jay, abar khub mayao hoy jaan. Eto bestota ar klantir majheo tumi jebhabe amake tomar life-er shobcheye boro priority diye rakho, amar chotto chotto abdar ar onubhutiguloke eto guruttho dao—seta amar life-er shobcheye boro pawa.
+
+Tumi please jaan nijer jotno niba. Kajer chape thikmoto khawa-dawa baad dio na, nijer opor eto pressure nio na. Tomar ektu kichu hole ba tomake tired dekhle amar je kotota koshto hoy, ta ami bhashay prokash korte parbo na.
+
+Ami chai amar purata life shudhu tomar sathei kataite. I wish Insha Allah, amader biyer pore ekdom chul peke jawa, onk boyosh hoya porjonto amra thik eibhabei eke oporer haat dhore thakbo, shukhe-dukkhe shobshomoy pashapashi thakbo.
+
+Ami tomake onk, onk beshi bhalobashi Jaan pakhi 🥺❤️. Eibhabei sharajibon amar pashe theko.`;
+
+        const STORAGE_KEY = 'jisan_surprise_letter_banglish_v1';
+
+        // Initialize background hearts & message on load
+        window.addEventListener('DOMContentLoaded', () => {
+            createAmbientHearts();
+            loadMessage();
+        });
+
+        // Create subtle floating hearts in the background
+        function createAmbientHearts() {
+            const container = document.getElementById('floating-bg');
+            const symbols = ['❤️', '💕', '✨', '🌸', '💖'];
+            for (let i = 0; i < 18; i++) {
+                const el = document.createElement('div');
+                el.className = 'bg-heart';
+                el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.fontSize = (Math.random() * 14 + 12) + 'px';
+                el.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                el.style.animationDelay = (Math.random() * 8) + 's';
+                container.appendChild(el);
+            }
+        }
+
+        // Heart burst particle effect on click/tap
+        function triggerHeartBurst(x, y, count = 14) {
+            const hearts = ['❤️', '💖', '💕', '✨', '💗'];
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'burst-heart';
+                particle.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+
+                const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.4);
+                const velocity = 60 + Math.random() * 90;
+                const tx = Math.cos(angle) * velocity + 'px';
+                const ty = Math.sin(angle) * velocity - 30 + 'px';
+                const rot = (Math.random() * 360 - 180) + 'deg';
+
+                particle.style.setProperty('--tx', tx);
+                particle.style.setProperty('--ty', ty);
+                particle.style.setProperty('--rot', rot);
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        // Open the main surprise content
+        function openSurprise(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            triggerHeartBurst(centerX, centerY, 20);
+
+            const content = document.getElementById('surprise-content');
+            content.classList.remove('hidden');
+
+            // Smooth scroll to the envelope section
+            setTimeout(() => {
+                content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                revealVisibleSections();
+            }, 250);
+        }
+
+        // Scroll reveal observer
+        function revealVisibleSections() {
+            const sections = document.querySelectorAll('.reveal-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            sections.forEach(sec => observer.observe(sec));
+        }
+
+        // Toggle Wax-Sealed Envelope
+        function toggleEnvelope() {
+            const container = document.getElementById('envelope-container');
+            const hint = document.getElementById('tap-hint');
+            container.classList.toggle('envelope-open');
+            
+            if (container.classList.contains('envelope-open')) {
+                hint.innerText = 'Bhalobashay khola hoyeche ❤️';
+            } else {
+                hint.innerText = 'Khulte ekhane tap koro';
+            }
+        }
+
+        // Load saved or default letter text
+        function loadMessage() {
+            let saved = null;
+            try {
+                saved = localStorage.getItem(STORAGE_KEY);
+            } catch (e) {}
+            const messageToShow = saved || DEFAULT_MESSAGE;
+            document.getElementById('letter-text-display').innerText = messageToShow;
+        }
+
+        // Open Edit Modal
+        function openEditModal() {
+            const currentText = document.getElementById('letter-text-display').innerText;
+            document.getElementById('custom-message-input').value = currentText;
+            const modal = document.getElementById('edit-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close Edit Modal
+        function closeEditModal() {
+            const modal = document.getElementById('edit-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Save Customized Message
+        function saveCustomMessage() {
+            const updated = document.getElementById('custom-message-input').value.trim();
+            if (updated) {
+                document.getElementById('letter-text-display').innerText = updated;
+                try {
+                    localStorage.setItem(STORAGE_KEY, updated);
+                } catch (e) {}
+            }
+            closeEditModal();
+        }
+
+        // Reset to Default Message
+        function resetDefaultMessage() {
+            document.getElementById('custom-message-input').value = DEFAULT_MESSAGE;
+        }
+
+        // Virtual Hug & Comfort Notes for when Jisan is tired from work/studies
+        const comfortNotes = [
+            "Ektu gobhir kore shash nao jaan pakhi... sharadin onk porishrom korecho. Mone rekho, ami shobshomoy tomar pashe achi ar tomake niye onk proud feel kori. 🫂❤️",
+            "Office-er kaj ar chape ekdom stress nio na baccha. Ektu pani khao, chokh bondho kore 5 minute rest nao. Tomar shustho thakatai amar kache shobcheye joruri. 🥺💧",
+            "Tumi amader future-er jonno eto koshto korcho—Allah nishchoy tomar shob porishromer onk shundor fol diben Insha Allah. Tumi eka nao jaan, ami shobshomoy tomar sathe achi. 🤲✨",
+            "Ekhon jodi shamne thakta, tahole shokto kore joriye dhore tomar shob klanti dur kore ditam janemaan! Kaj shesh kore taratari bashay fire thikmoto kheye niba kintu. ❤️🍲",
+            "Prithibir shobcheye bhalo manush-ta amar—amar jaan, amar pakhi. Nijer opor eto pressure nio na, ami tomake onk beshi bhalobashi! 🥺💖"
+        ];
+        let currentComfortIndex = 0;
+
+        function showComfortNote(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            triggerHeartBurst(rect.left + rect.width / 2, rect.top, 12);
+
+            const box = document.getElementById('comfort-note-box');
+            const textEl = document.getElementById('comfort-note-text');
+            const counterEl = document.getElementById('comfort-counter');
+
+            box.classList.remove('hidden');
+            box.classList.remove('animate-note-pop');
+            void box.offsetWidth; // trigger reflow for smooth re-animation
+            box.classList.add('animate-note-pop');
+
+            textEl.innerText = comfortNotes[currentComfortIndex];
+            counterEl.innerText = `${currentComfortIndex + 1}/${comfortNotes.length}`;
+
+            currentComfortIndex = (currentComfortIndex + 1) % comfortNotes.length;
+        }
+
+        // Love Meter Logic
+        let loveCount = 15;
+        const loveNotes = [
+            { limit: 35, text: "Eta to kebol shuru jaan! Aro tap koro 💕" },
+            { limit: 60, text: "Tomar hashi dekhlei amar sharadiner shob mon kharap bhalo hoye jay 🌸" },
+            { limit: 85, text: "Amar heart, amar mentor, amar shob kichu shudhu tumi-i! 👑" },
+            { limit: 100, text: "100% par hoye jacche kintu jaan pakhi! Hold on... 🚀❤️" },
+            { limit: 999, text: "Error 404: Limit not found! Amar bhalobasha tomar jonno Infinity & Beyond ♾️🥺❤️" }
+        ];
+
+        function increaseLove(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            triggerHeartBurst(rect.left + rect.width / 2, rect.top, 8);
+
+            const bar = document.getElementById('love-progress-bar');
+            const pctText = document.getElementById('love-percentage');
+            const noteText = document.getElementById('love-note');
+            const btn = document.getElementById('love-tap-btn');
+
+            if (loveCount < 100) {
+                loveCount = Math.min(100, loveCount + 17);
+                bar.style.width = loveCount + '%';
+                pctText.innerText = loveCount + '%';
+            } else {
+                loveCount = 999;
+                bar.style.width = '100%';
+                pctText.innerText = 'Infinity & Beyond ♾️❤️';
+                pctText.classList.add('scale-110', 'transition-transform');
+                btn.innerText = 'Oshim Bhalobasha Unlocked! 💖';
+            }
+
+            const matched = loveNotes.find(n => loveCount <= n.limit) || loveNotes[loveNotes.length - 1];
+            noteText.innerText = matched.text;
+        }
+    </script>
+</body>
+</html>
